@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://garud-class-frontend.vercel.app/",
+    origin: "https://garud-class-frontend--theta.vercel.app/",
     credentials: true,
     maxAge: 14400,
   })
