@@ -50,13 +50,22 @@ exports.login = async (req, res) => {
 			const options = {
 				expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
 				httpOnly: true,
+				sameSite: 'lax', // This line is added to prevent CSRF attacks
 			};
-			res.cookie("token", token, options).status(200).json({
+			// res.cookie("token", token, options).status(200).json({
+			// 	success: true,
+			// 	token,
+			// 	user,
+			// 	message: `User Login Success`,
+			// });
+
+			return res.status(200).json({
 				success: true,
 				token,
 				user,
 				message: `User Login Success`,
 			});
+			
 		} else {
 			return res.status(401).json({
 				success: false,
