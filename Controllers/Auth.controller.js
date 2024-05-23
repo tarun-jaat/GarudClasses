@@ -40,18 +40,18 @@ exports.login = async (req, res) => {
 				{ email: user.email },
 				process.env.JWT_SECRET,
 				{
-					expiresIn: "24h",
+					expiresIn: "1h",
 				}
 			);
 
 			user.token = token;
 			user.password = undefined;
 			// Set cookie for token and return success response
-			const options = {
-				expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-				httpOnly: true,
-				sameSite: 'lax', // This line is added to prevent CSRF attacks
-			};
+			// const options = {
+			// 	expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+			// 	httpOnly: true,
+			// 	sameSite: 'lax', // This line is added to prevent CSRF attacks
+			// };
 			// res.cookie("token", token, options).status(200).json({
 			// 	success: true,
 			// 	token,
@@ -65,7 +65,7 @@ exports.login = async (req, res) => {
 				user,
 				message: `User Login Success`,
 			});
-			
+
 		} else {
 			return res.status(401).json({
 				success: false,
